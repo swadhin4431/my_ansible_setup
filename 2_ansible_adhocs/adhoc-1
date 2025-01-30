@@ -1,0 +1,22 @@
+ansible infra1 -i hosts -m shell -a 'ip a | grep eth'   #pipe will work
+ansible infra1 -i hosts -m command -a 'ip a'  # pipe will not work
+
+#### how to copy src to dest 
+ansible infra1 -i hosts -m copy -a 'src=<> dest=<>' 
+or
+ansible infra1 -i hosts -m ansible.builtin.copy -a 'src=<> dest=<>
+
+####how to change file permission
+ansible infra1 -i hosts -m  file -a 'dest=/root/swadhin.txt mode=600 user=swadhin' 
+
+#### how to install packages
+ansible infra1 -i hosts -m yum -a 'name=httpd state=present' -b    #-b means sudo permission
+ansible infra1 -i hosts -m yum -a 'name=httpd state=latest' -b   #check wheather package update required
+ansible infra1 -i hosts -m yum -a 'name=httpd state=absent' -b    #remove package
+
+#### how to check services
+ansible infra1 -i hosts -m service -a 'name=httpd state=restarted'   #means restart the services
+ansible infra1 -i hosts -m service -a 'name=httpd state=stopped'   #means stop the services
+
+#### how to collect facts(server information)
+ansible infra1 -i hosts -m ansible.builtin.setup           #collect the server details or gathering the facts about the cpu,memory,pci and disk.
