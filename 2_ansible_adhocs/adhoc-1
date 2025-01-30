@@ -15,7 +15,8 @@ ansible infra1 -i hosts -m yum -a 'name=httpd state=latest' -b   #check wheather
 ansible infra1 -i hosts -m yum -a 'name=httpd state=absent' -b    #remove package
 
 #### how to check services
-ansible infra1 -i hosts -m service -a 'name=httpd state=restarted'   #means restart the services
+ansible infra1 -i hosts -m service -a 'name=httpd state=started enabled=true'   #means enable and start the services
+ansible infra1 -i hosts -m service -a 'name=httpd state=restarted'  #means restart the service
 ansible infra1 -i hosts -m service -a 'name=httpd state=stopped'   #means stop the services
 
 #### how to collect facts(server information)
